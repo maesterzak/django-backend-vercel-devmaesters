@@ -16,5 +16,7 @@ urlpatterns = [
     path('comment-create/', comment_create, name='comment_create'),
     path('register/', register.as_view(), name='register'),
     path('user/', loaduserview.as_view(), name='user'),
+    path('portfolio-skill/', all_portfolio_skills, name='portfolio_skill'),
+    path('portfolio-projects/', all_portfolio_projects, name='portfolio_projects'),
 
 ]

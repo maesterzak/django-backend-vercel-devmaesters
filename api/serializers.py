@@ -37,6 +37,7 @@ class MessageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class ThreadsSerializer(serializers.ModelSerializer):
     thread_messages = MessageSerializer(many=True, read_only=True)
 
@@ -50,4 +51,15 @@ class UserSerializer(serializers.ModelSerializer):
         model=User
         fields = ['username, first_name' ]
 
+
+class PortfolioSkillsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Portfolio_skills
+        fields = '__all__'
+
+
+class PortfolioProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Portfolio_projects
+        fields = '__all__'
 

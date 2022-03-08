@@ -74,3 +74,22 @@ class Comments(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class Portfolio_skills(models.Model):
+    name = models.CharField(max_length=100)
+    svg_image = models.FileField()
+
+    def __str__(self):
+        return str(self.name)
+
+
+class Portfolio_projects(models.Model):
+    name = models.CharField(max_length=100)
+    stack = models.TextField()
+    description = models.TextField()
+    video = models.URLField()
+    github = models.URLField(default='https://github.com/maesterzak')
+
+    def __str__(self):
+        return str(self.name)

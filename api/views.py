@@ -125,12 +125,26 @@ def comment_create(request):
 
 @api_view(['GET'])
 def all_category_post(request, str):
-    print('yaass', str)
+
     posts = Posts.objects.filter(category__name=str)
 
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def all_portfolio_skills(request):
+
+    skill = Portfolio_skills.objects.all()
+
+    serializer = PortfolioSkillsSerializer(skill, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def all_portfolio_projects(request):
+    project = Portfolio_projects.objects.all()
+    serializer = PortfolioProjectSerializer(project, many=True)
+    return Response(serializer.data)
 
 
 
