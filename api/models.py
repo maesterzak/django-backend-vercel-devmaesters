@@ -54,7 +54,7 @@ class Threads(models.Model):
 
 class Messages(models.Model):
     name = models.CharField(max_length=50)
-    date_created = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateField(auto_now_add=True)
     body = models.TextField()
     thread = models.ForeignKey(Threads,related_name='thread_messages', on_delete=models.CASCADE)
     profile_image = models.ImageField(blank=True, null=True)
@@ -66,7 +66,7 @@ class Messages(models.Model):
 
 class Comments(models.Model):
     name = models.CharField(max_length=50)
-    date_created = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateField(auto_now_add=True)
     body = models.TextField()
     post = models.ForeignKey(Posts,related_name='posts_comments', on_delete=models.CASCADE)
     profile_image = models.ImageField(blank=True, null=True)
