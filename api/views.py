@@ -2,25 +2,34 @@ from django.shortcuts import render
 from rest_framework import permissions
 from .models import *
 from django.http import HttpResponse
-from django.http import JsonResponse
-from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes
 from .serializers import *
-from rest_framework.response import Response
+from rest_framework import pagination
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import permissions, status
 from django.contrib.auth.models import User
+from rest_framework.pagination import PageNumberPagination,LimitOffsetPagination
+from .paginations import CustomPagination
 # Create your views here.
 
 
 @api_view(['GET'])
 def all_posts(request):
-    posts = Posts.objects.all()
+    posts = Posts.objects.filter(publish = True).order_by('-published_date')
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def all_posts_paginated(request):
+    posts = Posts.objects.filter(publish = True).order_by('-published_date')
+    paginator =CustomPagination()
+    result = paginator.paginate_queryset(posts, request)
+    serializer = PostSerializer(result, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
 
 @api_view(['GET'])
@@ -78,6 +87,15 @@ def all_threads(request):
     threads = Threads.objects.all()
     serializer = ThreadsSerializer(threads, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def all_threads_paginated(request):
+    threads = Threads.objects.all()
+    paginator =CustomPagination()
+    result = paginator.paginate_queryset(threads, request)
+    serializer = ThreadsSerializer(result, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
 @api_view(['GET'])
 def thread_detail(request, pk):

@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth.models import User
@@ -7,6 +9,7 @@ from ckeditor.fields import RichTextField
 
 
 class Author(models.Model):
+    unique_id = models.UUIDField(default=uuid.uuid4())
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False, blank=False)
     name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -19,6 +22,7 @@ class Author(models.Model):
 
 
 class Category(models.Model):
+    unique_id = models.UUIDField(default=uuid.uuid4())
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -26,6 +30,7 @@ class Category(models.Model):
 
 
 class Posts(models.Model):
+    unique_id = models.UUIDField(default=uuid.uuid4())
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, related_name='author',blank=False, null=True, on_delete=models.SET_NULL)
     published_date = models.DateField(auto_now_add=True)
@@ -37,12 +42,14 @@ class Posts(models.Model):
     image = models.ImageField(blank=True, null=True)
     daily_views = models.IntegerField(default=0, blank=False)
     tags = ArrayField(models.CharField(null=False, blank=True,max_length=20, default='cat'), default=list)
+    publish = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.title)
 
 
 class Threads(models.Model):
+    unique_id = models.UUIDField(default=uuid.uuid4())
     title = models.CharField(max_length=500)
     description = models.TextField()
     status = models.BooleanField(default=True)
@@ -53,6 +60,7 @@ class Threads(models.Model):
 
 
 class Messages(models.Model):
+
     name = models.CharField(max_length=50)
     date_created = models.DateField(auto_now_add=True)
     body = models.TextField()
@@ -65,6 +73,7 @@ class Messages(models.Model):
 
 
 class Comments(models.Model):
+
     name = models.CharField(max_length=50)
     date_created = models.DateField(auto_now_add=True)
     body = models.TextField()
