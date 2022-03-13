@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import permissions
 from .models import *
 from django.http import HttpResponse
-from rest_framework.decorators import api_view, authentication_classes
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from .serializers import *
 from rest_framework import pagination
 from rest_framework.authtoken.serializers import AuthTokenSerializer
@@ -11,7 +11,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import permissions, status
 from django.contrib.auth.models import User
-from rest_framework.pagination import PageNumberPagination,LimitOffsetPagination
 from .paginations import CustomPagination
 # Create your views here.
 
@@ -43,6 +42,7 @@ def post_detail(request, pk):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def post_create(request):
     serializer = PostSerializer(data=request.data)
 
@@ -55,6 +55,7 @@ def post_create(request):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def post_update(request, pk):
     post = Posts.objects.get(id=pk)
     serializer = PostSerializer(instance=post, data=request.data)
@@ -68,6 +69,7 @@ def post_update(request, pk):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def post_delete(request, pk):
     post = Posts.objects.get(id=pk)
     post.delete()
