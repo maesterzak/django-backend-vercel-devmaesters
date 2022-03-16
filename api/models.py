@@ -3,7 +3,7 @@ import uuid
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth.models import User
-
+from ckeditor_uploader.fields import RichTextUploadingField
 from cloudinary.models import CloudinaryField
 from ckeditor.fields import RichTextField
 
@@ -36,7 +36,7 @@ class Posts(models.Model):
     published_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
     views = models.IntegerField(default=0)
-    body = RichTextField(default='Empty content')
+    body = RichTextUploadingField(default='Empty Content')
     handshakes = models.IntegerField(default=0)
     category = models.ForeignKey(Category,related_name='category', blank=False, null=True, on_delete=models.SET_NULL)
     image = models.ImageField(blank=True, null=True)
@@ -51,7 +51,7 @@ class Posts(models.Model):
 class Threads(models.Model):
     unique_id = models.UUIDField(default=uuid.uuid4())
     title = models.CharField(max_length=500)
-    description = models.TextField()
+    description = RichTextUploadingField()
     status = models.BooleanField(default=True)
     started = models.DateField(auto_now_add=True)
 

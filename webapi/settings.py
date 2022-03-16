@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'corsheaders',
+    'ckeditor_uploader',
+
 ]
 
 MIDDLEWARE = [
@@ -160,7 +162,7 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
 }
 
-
+CKEDITOR_UPLOAD_PATH = "uploads/"
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 MEDIA_URL = '/images/'
