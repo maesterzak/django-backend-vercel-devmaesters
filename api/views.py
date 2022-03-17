@@ -12,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import permissions, status
 from django.contrib.auth.models import User
 from .paginations import CustomPagination
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 # Create your views here.
 
 
@@ -143,13 +144,20 @@ def comment_create(request):
 
 
 
+
+
+
 @api_view(['GET'])
-def all_category_post(request, str):
+def all_category_paginated_post(request, str):
+    posts = Posts.objects.filter(category__name=str).order_by('-published_date')
+    paginator =LimitOffsetPagination()
+    paginator.limit_query_param='l'
+    paginator.limit='2'
+    result = paginator.paginate_queryset(posts, request)
+    serializer = PostSerializer(result, many=True)
 
-    posts = Posts.objects.filter(category__name=str)
+    return paginator.get_paginated_response(serializer.data)
 
-    serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data)
 
 @api_view(['GET'])
 def all_portfolio_skills(request):

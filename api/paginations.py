@@ -8,7 +8,8 @@ class CustomPagination(pagination.PageNumberPagination):
     page_query_param = 'p'
     page_size_query_param = 'ps'
     limit_query_param='l'
-    pax_limit=9
+    max_page_size = 9
+
 
     def get_paginated_response(self, data):
         response = Response(data)

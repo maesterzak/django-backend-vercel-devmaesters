@@ -9,7 +9,8 @@ urlpatterns = [
     path('post-update/<str:pk>/', post_update, name='post_update'),
     path('post-delete/<str:pk>/', post_delete, name='post_delete'),
     path('categories/', all_categories, name='categories-list'),
-    path('categories-posts/<str:str>/', all_category_post, name='category_post'),
+
+    path('categories-paginated-posts/<str:str>/', all_category_paginated_post, name='category_p_post'),
     path('threads/', all_threads, name='all_threads'),
     path('paginated_threads/', all_threads_paginated, name='all_threads_paginated'),
     path('thread-detail/<str:pk>/', thread_detail, name='thread_detail'),
