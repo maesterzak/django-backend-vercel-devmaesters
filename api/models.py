@@ -1,5 +1,4 @@
 import uuid
-
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth.models import User
@@ -15,6 +14,12 @@ class Author(models.Model):
     email = models.EmailField()
     about_me = RichTextField()
     profile_image = models.ImageField(blank=True, null=True)
+    facebook = models.URLField(default='undefined')
+    linkdn = models.URLField(default='undefined')
+    instagram = models.URLField(default='undefined')
+    twitter = models.URLField(default='undefined')
+    facebook = models.URLField(default='undefined')
+
 
 
     def __str__(self):

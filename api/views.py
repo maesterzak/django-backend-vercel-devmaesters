@@ -1,18 +1,14 @@
-from django.shortcuts import render
-from rest_framework import permissions
+
 from .models import *
 from django.http import HttpResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from .serializers import *
-from rest_framework import pagination
-from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import permissions, status
-from django.contrib.auth.models import User
 from .paginations import CustomPagination
-from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
+from rest_framework.pagination import LimitOffsetPagination
 # Create your views here.
 
 
@@ -189,39 +185,43 @@ class register(APIView):
         password = data['password']
         re_password = data['re_password']
         if password == re_password:
-            if len(password) >=8:
-                if not User.objects.filter(username=username).exists():
-                    user =User.objects.create_user(
-                        first_name = first_name,
-                        last_name = last_name,
-                        username = username,
-                        password = password
-                    )
-                    author = Author.objects.create(
-                        name = first_name
-                    )
-                    #user.save()
-                    if User.objects.filter(username=username).exists():
-                        return Response(
-                            {'success':'Account created successfully'},
-                            status = status.HTTP_201_CREATED
-                        )
-                    else:
-                        return Response(
-                            {'error': 'Something went wrong when trying to create'},
-                            status=status.HTTP_400_BAD_REQUEST
-                        )
-                else:
-                    return Response (
-                        {'error': 'username already exist'},
-                        status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                    )
-
-            else:
-                return Response(
-                    {'error': 'passwords must be at least 8 char'},
+            return Response(
+                    {'error': 'registration is disabled, check back later'},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
+            # if len(password) >=8:
+            #     if not User.objects.filter(username=username).exists():
+            #         user =User.objects.create_user(
+            #             first_name = first_name,
+            #             last_name = last_name,
+            #             username = username,
+            #             password = password
+            #         )
+            #         author = Author.objects.create(
+            #             name = first_name
+            #         )
+            #         #user.save()
+            #         if User.objects.filter(username=username).exists():
+            #             return Response(
+            #                 {'success':'Account created successfully'},
+            #                 status = status.HTTP_201_CREATED
+            #             )
+            #         else:
+            #             return Response(
+            #                 {'error': 'Something went wrong when trying to create'},
+            #                 status=status.HTTP_400_BAD_REQUEST
+            #             )
+            #     else:
+            #         return Response (
+            #             {'error': 'username already exist'},
+            #             status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            #         )
+            #
+            # else:
+            #     return Response(
+            #         {'error': 'passwords must be at least 8 char'},
+            #         status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            #     )
 
         else:
             return Response(
