@@ -32,6 +32,7 @@ def all_posts_paginated(request):
 def post_detail(request, pk):
     post = Posts.objects.get(id=pk)
     post.daily_views=(post.daily_views + 1)
+    post.views=(post.views + 1)
     post.save()
 
     serializer = PostSerializer(post, many=False)
