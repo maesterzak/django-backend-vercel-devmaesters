@@ -14,11 +14,11 @@ class Author(models.Model):
     email = models.EmailField()
     about_me = RichTextField()
     profile_image = models.ImageField(blank=True, null=True)
-    facebook = models.URLField(default='undefined')
-    linkdn = models.URLField(default='undefined')
-    instagram = models.URLField(default='undefined')
-    twitter = models.URLField(default='undefined')
-    facebook = models.URLField(default='undefined')
+    facebook = models.URLField( blank=True, null=True)
+    linkdn = models.URLField( blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+    twitter = models.URLField( blank=True, null=True)
+    facebook = models.URLField( blank=True, null=True)
 
 
 
