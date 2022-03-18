@@ -176,7 +176,7 @@ CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'https://django-api-test-frontend.vercel.app',
-    'https://www.devmaesters.tk'
+    'https://www.devmaesters.com'
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
