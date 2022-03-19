@@ -8,7 +8,6 @@ from ckeditor.fields import RichTextField
 
 
 class Author(models.Model):
-    unique_id = models.UUIDField(default=uuid.uuid4())
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False, blank=False)
     name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -27,7 +26,6 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    unique_id = models.UUIDField(default=uuid.uuid4())
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -35,7 +33,6 @@ class Category(models.Model):
 
 
 class Posts(models.Model):
-    unique_id = models.UUIDField(default=uuid.uuid4())
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, related_name='author',blank=False, null=True, on_delete=models.SET_NULL)
     published_date = models.DateField(auto_now_add=True)
@@ -54,7 +51,6 @@ class Posts(models.Model):
 
 
 class Threads(models.Model):
-    unique_id = models.UUIDField(default=uuid.uuid4())
     title = models.CharField(max_length=500)
     description = RichTextUploadingField()
     status = models.BooleanField(default=True)
@@ -102,7 +98,7 @@ class Portfolio_projects(models.Model):
     name = models.CharField(max_length=100)
     stack = models.TextField()
     description = models.TextField()
-    video = models.URLField()
+    video = models.URLField(blank=True, null=True)
     github = models.URLField(default='https://github.com/maesterzak')
 
     def __str__(self):
