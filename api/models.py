@@ -99,7 +99,7 @@ class Portfolio_projects(models.Model):
     stack = models.TextField()
     description = models.TextField()
     video = models.URLField(blank=True, null=True)
-    github = models.URLField(default='https://github.com/maesterzak')
+    github = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return str(self.name)
