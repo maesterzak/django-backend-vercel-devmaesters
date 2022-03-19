@@ -18,7 +18,7 @@ class Author(models.Model):
     linkdn = models.URLField( blank=True, null=True)
     instagram = models.URLField(blank=True, null=True)
     twitter = models.URLField( blank=True, null=True)
-    facebook = models.URLField( blank=True, null=True)
+    whatsapp = models.URLField( blank=True, null=True)
 
 
 

@@ -138,7 +138,17 @@ USE_I18N = True
 
 USE_TZ = True
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'codeSnippet_theme': 'railscasts',
+        'extraPlugins': ','.join(
+            [
+                'codesnippet'
+            ]),
+    },
 
+}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 CLOUDINARY_STORAGE = {
