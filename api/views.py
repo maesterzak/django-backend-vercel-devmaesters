@@ -84,14 +84,14 @@ def all_categories(request):
 
 @api_view(['GET'])
 def all_threads(request):
-    threads = Threads.objects.all()
+    threads = Threads.objects.filter(status = True)
     serializer = ThreadsSerializer(threads, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def all_threads_paginated(request):
-    threads = Threads.objects.all()
+    threads = Threads.objects.filter(status = True)
     paginator =CustomPagination()
     result = paginator.paginate_queryset(threads, request)
     serializer = ThreadsSerializer(result, many=True)
@@ -100,8 +100,14 @@ def all_threads_paginated(request):
 @api_view(['GET'])
 def thread_detail(request, pk):
     post = Threads.objects.get(id=pk)
-    serializer = ThreadsSerializer(post, many=False)
-    return Response(serializer.data)
+    if post.status == True:
+        serializer = ThreadsSerializer(post, many=False)
+        return Response(serializer.data)
+    else:
+        return Response(
+            {'error': 'Invalid request'},
+            status=status.HTTP_404_NOT_FOUND
+        )
 
 
 @api_view(['POST'])
