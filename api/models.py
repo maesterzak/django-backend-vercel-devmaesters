@@ -64,7 +64,7 @@ class Messages(models.Model):
 
     name = models.CharField(max_length=50)
     date_created = models.DateField(auto_now_add=True)
-    body = models.TextField()
+    body = RichTextField()
     thread = models.ForeignKey(Threads,related_name='thread_messages', on_delete=models.CASCADE)
     profile_image = models.ImageField(blank=True, null=True)
     profile_image_value = models.CharField(max_length=25, blank=True, null=True)
