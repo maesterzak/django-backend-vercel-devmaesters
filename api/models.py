@@ -13,11 +13,11 @@ class Author(models.Model):
     email = models.EmailField()
     about_me = RichTextField()
     profile_image = models.ImageField(blank=True, null=True)
-    facebook = models.URLField( blank=True, null=True)
-    linkdn = models.URLField( blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    linkdn = models.URLField(blank=True, null=True)
     instagram = models.URLField(blank=True, null=True)
-    twitter = models.URLField( blank=True, null=True)
-    whatsapp = models.URLField( blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    whatsapp = models.CharField(blank=True, null=True, max_length=15)
 
 
 
@@ -52,7 +52,7 @@ class Posts(models.Model):
 
 class Threads(models.Model):
     title = models.CharField(max_length=500)
-    description = RichTextUploadingField()
+    description = RichTextField()
     status = models.BooleanField(default=True)
     started = models.DateField(auto_now_add=True)
 
@@ -77,7 +77,7 @@ class Comments(models.Model):
 
     name = models.CharField(max_length=50)
     date_created = models.DateField(auto_now_add=True)
-    body = models.TextField()
+    body = RichTextField()
     post = models.ForeignKey(Posts,related_name='posts_comments', on_delete=models.CASCADE)
     profile_image = models.ImageField(blank=True, null=True)
     profile_image_value = models.CharField(max_length=25, blank=True, null=True)
