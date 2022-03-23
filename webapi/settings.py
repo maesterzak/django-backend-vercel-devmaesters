@@ -144,7 +144,7 @@ CKEDITOR_CONFIGS = {
         'codeSnippet_theme': 'railscasts',
         'extraPlugins': ','.join(
             [
-                'codesnippet','dialog', 'autolink', 'html5video',
+                'codesnippet','dialog', 'autolink',
 
 
             ]),
