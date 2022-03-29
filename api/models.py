@@ -97,9 +97,11 @@ class Portfolio_skills(models.Model):
 class Portfolio_projects(models.Model):
     name = models.CharField(max_length=100)
     stack = models.TextField()
-    description = models.TextField()
-    video = models.URLField(blank=True, null=True)
-    github = models.URLField(blank=True, null=True)
+    description = RichTextField()
+    video = models.CharField(blank=True, null=True, max_length=300)
+    github = models.CharField(blank=True, null=True, max_length=300)
+    videoSize = models.CharField(blank=True, null=True, max_length=5)
+
 
     def __str__(self):
         return str(self.name)
