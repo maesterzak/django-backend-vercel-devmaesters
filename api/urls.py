@@ -5,9 +5,9 @@ urlpatterns = [
     path('posts/', all_posts, name='posts'),
     path('posts_paginated/', all_posts_paginated, name='posts_paginated'),
     path('post-detail/<str:pk>/', post_detail, name='post_detail'),
-    path('post-create/', post_create, name='post_create'),
-    path('post-update/<str:pk>/', post_update, name='post_update'),
-    path('post-delete/<str:pk>/', post_delete, name='post_delete'),
+    # path('post-create/', post_create, name='post_create'),
+    # path('post-update/<str:pk>/', post_update, name='post_update'),
+    # path('post-delete/<str:pk>/', post_delete, name='post_delete'),
     path('categories/', all_categories, name='categories-list'),
 
     path('categories-paginated-posts/<str:str>/', all_category_paginated_post, name='category_p_post'),

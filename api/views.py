@@ -84,14 +84,14 @@ def all_categories(request):
 
 @api_view(['GET'])
 def all_threads(request):
-    threads = Threads.objects.filter(status = True)
+    threads = Threads.objects.filter(status = True).order_by('-started')
     serializer = ThreadsSerializer(threads, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def all_threads_paginated(request):
-    threads = Threads.objects.filter(status = True)
+    threads = Threads.objects.filter(status = True).order_by('-started')
     paginator =CustomPagination()
     result = paginator.paginate_queryset(threads, request)
     serializer = ThreadsSerializer(result, many=True)

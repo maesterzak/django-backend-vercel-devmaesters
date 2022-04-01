@@ -33,7 +33,7 @@ class Category(models.Model):
 
 
 class Posts(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=400)
     author = models.ForeignKey(Author, related_name='author',blank=False, null=True, on_delete=models.SET_NULL)
     published_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
