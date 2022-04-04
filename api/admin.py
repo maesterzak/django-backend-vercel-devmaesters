@@ -30,6 +30,7 @@ admin.site.register(Posts, PostAdmin)
 admin.site.register(Category)
 
 admin.site.register(Threads, ThreadAdmin)
-
+admin.site.register(Comments)
+admin.site.register(Messages)
 admin.site.register(Portfolio_skills)
 admin.site.register(Portfolio_projects)
