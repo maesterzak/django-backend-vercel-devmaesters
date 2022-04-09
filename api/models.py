@@ -35,7 +35,7 @@ class Category(models.Model):
 class Posts(models.Model):
     title = models.CharField(max_length=400)
     author = models.ForeignKey(Author, related_name='author',blank=False, null=True, on_delete=models.SET_NULL)
-    published_date = models.DateField(auto_now_add=True)
+    published_date = models.DateField()
     updated_date = models.DateField(auto_now=True)
     views = models.IntegerField(default=0)
     body = RichTextUploadingField(default='Empty Content')
@@ -54,7 +54,7 @@ class Threads(models.Model):
     title = models.CharField(max_length=500)
     description = RichTextField()
     status = models.BooleanField(default=True)
-    started = models.DateField(auto_now_add=True)
+    started = models.DateField()
 
     def __str__(self):
         return str(self.title)
@@ -100,6 +100,7 @@ class Portfolio_projects(models.Model):
     description = RichTextField()
     video = models.CharField(blank=True, null=True, max_length=300)
     github = models.CharField(blank=True, null=True, max_length=300)
+    demo = models.URLField(blank=True, null=True)
     videoSize = models.CharField(blank=True, null=True, max_length=5)
 
 

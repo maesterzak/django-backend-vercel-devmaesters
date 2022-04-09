@@ -9,6 +9,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import permissions, status
 from .paginations import CustomPagination
 from rest_framework.pagination import LimitOffsetPagination
+from django.utils import timezone, datetime_safe
+import datetime
 # Create your views here.
 
 
@@ -84,6 +86,8 @@ def all_categories(request):
 
 @api_view(['GET'])
 def all_threads(request):
+    # time = datetime.date.today()
+    # print(time)
     threads = Threads.objects.filter(status = True).order_by('-started')
     serializer = ThreadsSerializer(threads, many=True)
     return Response(serializer.data)
