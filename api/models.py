@@ -45,6 +45,7 @@ class Posts(models.Model):
     daily_views = models.IntegerField(default=0, blank=False)
     tags = ArrayField(models.CharField(null=False, blank=True,max_length=20, default='cat'), default=list)
     publish = models.BooleanField(default=False)
+    video = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return str(self.title)
