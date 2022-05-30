@@ -3,7 +3,7 @@ from .models import *
 # Register your models here.
 
 
-class CommentsInline(admin.TabularInline):
+class CommentsInline(admin.StackedInline):
     model = Comments
 
 
@@ -14,7 +14,7 @@ class PostAdmin(admin.ModelAdmin):
     ]
 
 
-class MessageInline(admin.TabularInline):
+class MessageInline(admin.StackedInline):
     model = Messages
 
 

@@ -191,15 +191,15 @@ class register(APIView):
         data=request.data
 
         first_name = data['first_name']
-        last_name = data['last_name']
-        username = data['username']
-        password = data['password']
-        re_password = data['re_password']
-        if password == re_password:
-            return Response(
-                    {'error': 'registration is disabled, check back later'},
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                )
+        # last_name = data['last_name']
+        # username = data['username']
+        # password = data['password']
+        # re_password = data['re_password']
+        # if password == re_password:
+        #     return Response(
+        #             {'error': 'registration is disabled, check back later'},
+        #             status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        #         )
             # if len(password) >=8:
             #     if not User.objects.filter(username=username).exists():
             #         user =User.objects.create_user(
@@ -234,11 +234,11 @@ class register(APIView):
             #         status=status.HTTP_500_INTERNAL_SERVER_ERROR
             #     )
 
-        else:
-            return Response(
-                {'error': 'passwords do not match'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+        # else:
+        #     return Response(
+        #         {'error': 'passwords do not match'},
+        #         status=status.HTTP_400_BAD_REQUEST
+        #     )
 
 
 
