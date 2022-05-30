@@ -5,6 +5,7 @@ from .models import *
 
 class CommentsInline(admin.StackedInline):
     model = Comments
+    extra = 0
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -16,7 +17,7 @@ class PostAdmin(admin.ModelAdmin):
 
 class MessageInline(admin.StackedInline):
     model = Messages
-
+    extra = 0
 
 class ThreadAdmin(admin.ModelAdmin):
     list_display = ('title', 'started', 'status')
